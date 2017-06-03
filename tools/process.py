@@ -67,7 +67,7 @@ def blank(src):
     offset = int(image_size / 2 - size / 2)
 
     dst = src
-    dst[offset:offset + size,offset:offset + size,:] = np.ones([size, size, 3])
+    dst[offset:offset + size,offset:offset + size,:] = np.ones([size, size, 1])
     return dst
 
 

@@ -1,0 +1,43 @@
+
+TRAIN AND TEST WITH BOTH INPUT AND TARGET
+
+a is target
+b is input
+
+
+python tools/process.py   --input_dir a   --b_dir b   --operation combine   --output_dir c
+
+python tools/split.py   --dir c
+
+python pix2pix.py   --mode train   --output_dir c_train   --max_epochs 200   --input_dir c/train  --which_direction BtoA
+
+python pix2pix.py --mode test --output_dir c_test --input_dir c/val --checkpoint c_train
+
+
+
+
+
+TRAIN AND TEST WITH JUST ONE INPUT
+
+b is input_dir
+
+
+
+rm -rf b_resized
+rm -rf b_blank
+rm -rf b_combined
+
+python tools/process.py --input_dir b --operation resize --output_dir b_resized
+
+python tools/process.py --input_dir b_resized --operation blank --output_dir b_blank
+
+python tools/process.py --input_dir b_blank --b_dir b_resized --operation combine --output_dir b_combined
+
+rm -rf c_test
+
+python pix2pix.py --mode test --output_dir c_test --input_dir b_combined --checkpoint c_train
+
+open c_test/index.html
+
+
+
