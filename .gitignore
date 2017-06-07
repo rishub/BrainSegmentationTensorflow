@@ -10,6 +10,7 @@ a/*
 b/*
 c/*
 c_train/*
+c_test/*
 features/*
 labels/*
 LesionDataset/*
