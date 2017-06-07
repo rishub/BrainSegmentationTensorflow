@@ -1,27 +1,14 @@
-
-TRAIN AND TEST WITH BOTH INPUT AND TARGET
-
-a is target
-b is input
-
-
-python tools/process.py   --input_dir a   --b_dir b   --operation combine   --output_dir c
-
-python tools/split.py   --dir c
-
-python pix2pix.py   --mode train   --output_dir c_train   --max_epochs 200   --input_dir c/train  --which_direction BtoA
-
-python pix2pix.py --mode test --output_dir c_test --input_dir c/val --checkpoint c_train
+# convert dicom to png
+python mritopng.py -f <folder with dicom> <output_dir>
 
 
 
+# TRAIN AND TEST WITH JUST ONE INPUT
+# b is input_dir
 
 
-TRAIN AND TEST WITH JUST ONE INPUT
-
-b is input_dir
-
-
+# convert dicom to png
+python mritopng.py -f <folder with dicom> b
 
 rm -rf b_resized
 rm -rf b_blank
@@ -40,4 +27,21 @@ python pix2pix.py --mode test --output_dir c_test --input_dir b_combined --check
 open c_test/index.html
 
 
+
+# TRAIN AND TEST WITH BOTH INPUT AND TARGET
+# a is target
+# b is input
+
+
+python tools/process.py   --input_dir a   --b_dir b   --operation combine   --output_dir c
+
+python tools/split.py   --dir c
+
+python pix2pix.py   --mode train   --output_dir c_train   --max_epochs 200   --input_dir c/train  --which_direction BtoA
+
+rm -rf c_test
+
+python pix2pix.py --mode test --output_dir c_test --input_dir c/val --checkpoint c_train
+
+open c_test/index.html
 
