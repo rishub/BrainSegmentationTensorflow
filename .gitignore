@@ -6,4 +6,10 @@ terraform.tfstate
 terraform.tfstate.backup
 terraform.tfvars
 .idea
+a/*
+b/*
+c/*
 c_train/*
+features/*
+labels/*
+LesionDataset/*
